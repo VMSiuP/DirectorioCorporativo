@@ -1,9 +1,11 @@
-const CACHE_NAME = 'directorio-v3';
+const CACHE_NAME = 'directorio-v4';
+const BASE = '/DirectorioCorporativo';
 const ASSETS = [
-  './',
-  './index.html',
-  './logo-app_192.png',
-  './logo-app_512.png',
+  `${BASE}/`,
+  `${BASE}/index.html`,
+  `${BASE}/logo-mp.png`,
+  `${BASE}/logo-app_192.png`,
+  `${BASE}/logo-app_512.png`,
   'https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap',
   'https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js',
   'https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.6.2/fuse.min.js'
@@ -14,7 +16,7 @@ self.addEventListener('install', (e) => {
   e.waitUntil(
     caches.open(CACHE_NAME).then((cache) => cache.addAll(ASSETS))
   );
-  self.skipWaiting(); // Activar inmediatamente sin esperar pestañas cerradas
+  self.skipWaiting();
 });
 
 // 2. Activación: limpiar cachés antiguas
@@ -28,7 +30,7 @@ self.addEventListener('activate', (e) => {
       )
     )
   );
-  self.clients.claim(); // Tomar control de todas las pestañas abiertas
+  self.clients.claim();
 });
 
 // 3. Interceptación de peticiones: red primero, caché como respaldo
