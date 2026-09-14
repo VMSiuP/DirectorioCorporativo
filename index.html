@@ -7,64 +7,150 @@
     <meta name="theme-color" content="#2563eb">
     <meta name="description" content="Directorio de empresas, bancos y operadoras.">
     <link rel="manifest" href="manifest.json">
-    
-    <link rel="icon" type="image/png" href="logo-app.png">
-    
+
+    <link rel="icon" type="image/png" sizes="192x192" href="logo-app_192.png">
+    <link rel="apple-touch-icon" href="logo-app_192.png">
+
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.6.2/fuse.min.js"></script>
 
     <style>
-        :root { --primary: #1e3a8a; --secondary: #2563eb; --bg: #f8fafc; --card-bg: #ffffff; --text: #1e293b; --label: #64748b; }
-        
-        body { font-family: 'Inter', sans-serif; background-color: var(--bg); color: var(--text); margin: 0; padding: 20px; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
+        :root {
+            --primary: #1e3a8a;
+            --secondary: #2563eb;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text: #1e293b;
+            --label: #64748b;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
         .container { width: 100%; max-width: 600px; }
-        
-        /* 2. Cabecera Oficial */
+
+        /* Cabecera */
         .header { text-align: center; margin-bottom: 25px; }
-        .header img { max-width: 250px; height: auto; margin-bottom: 10px; }
+        .header img { max-width: 160px; height: auto; margin-bottom: 10px; }
         .header h1 { margin: 0; font-size: 1.5rem; color: var(--primary); font-weight: 700; }
 
         /* Buscador */
         .search-box { position: sticky; top: 10px; z-index: 100; margin-bottom: 20px; }
-        input { width: 100%; padding: 16px; border-radius: 12px; border: 1px solid #cbd5e1; font-size: 16px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); outline: none; box-sizing: border-box; }
+        input {
+            width: 100%;
+            padding: 16px;
+            border-radius: 12px;
+            border: 1px solid #cbd5e1;
+            font-size: 16px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+            outline: none;
+            box-sizing: border-box;
+        }
         input:focus { border-color: var(--secondary); border-width: 2px; }
 
         /* Tarjetas */
-        .card { background: var(--card-bg); border-radius: 12px; padding: 20px; margin-bottom: 15px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
-        .card h2 { margin: 0 0 12px 0; color: var(--primary); font-size: 1.25rem; border-bottom: 1px solid #e2e8f0; padding-bottom: 8px; }
-        .data-row { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 0.9rem; line-height: 1.4; }
+        .card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .card h2 {
+            margin: 0 0 12px 0;
+            color: var(--primary);
+            font-size: 1.25rem;
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 8px;
+        }
+        .data-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
         .label { font-weight: 600; color: var(--label); min-width: 80px; }
         .value { text-align: right; max-width: 70%; word-break: break-word; color: #334155; }
         a { color: var(--secondary); text-decoration: none; }
-        
-        /* 3. Botones de Acción */
-        .action-buttons { display: flex; gap: 10px; margin-top: 15px; border-top: 1px solid #e2e8f0; padding-top: 15px; }
-        .btn { flex: 1; padding: 10px; border: none; border-radius: 8px; font-weight: 600; font-size: 0.9rem; cursor: pointer; transition: background 0.2s; display: flex; justify-content: center; align-items: center; gap: 5px; }
+
+        /* Botones de Acción */
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 15px;
+        }
+        .btn {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: background 0.2s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+        }
         .btn-copy { background-color: #f1f5f9; color: #475569; }
         .btn-copy:hover { background-color: #e2e8f0; }
         .btn-wa { background-color: #25D366; color: white; }
         .btn-wa:hover { background-color: #20b858; }
 
-        /* 4. Footer */
-        #status { text-align: center; font-size: 0.85rem; color: var(--label); margin-top: 30px; padding-bottom: 20px; font-weight: 600; }
-        
+        /* Footer */
+        #status {
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--label);
+            margin-top: 30px;
+            padding-bottom: 20px;
+            font-weight: 600;
+        }
+
         /* Notificación Flotante */
-        .toast { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: #1e293b; color: white; padding: 10px 20px; border-radius: 20px; font-size: 0.9rem; opacity: 0; transition: opacity 0.3s; pointer-events: none; z-index: 1000;}
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1e293b;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+            z-index: 1000;
+        }
     </style>
 </head>
 <body>
 
 <div class="container">
     <div class="header">
-        <img src="logo-mp.png" alt="Ministerio Público" onerror="this.style.display='none'">
+        <img src="logo-app_512.png" alt="Directorio Corporativo" onerror="this.style.display='none'">
         <h1>Directorio Corporativo</h1>
     </div>
 
     <div class="search-box">
-        <input type="text" id="searchInput" placeholder="Buscar empresa o entidad...">
+        <input type="search" id="searchInput" placeholder="Buscar empresa o entidad..." autocomplete="off" autocorrect="off" spellcheck="false">
     </div>
-    
+
     <div id="results"></div>
     <div id="status">Conectando...</div>
 </div>
@@ -75,17 +161,13 @@
     // ==========================================
     // CONFIGURACIÓN DE DATOS
     // ==========================================
-    
-    // ¡RECUERDA PEGAR TU ENLACE DE GOOGLE SHEETS AQUÍ!
-    const DATA_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSa6eHPi0Fk9UJZaa50W-mN30bkDIkWbJgTtcZNeCbWMWDeg6afrOCu4KKlwlTreEveZYL2P4RJXK7h/pub?output=csv'; 
-    
+    const DATA_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSa6eHPi0Fk9UJZaa50W-mN30bkDIkWbJgTtcZNeCbWMWDeg6afrOCu4KKlwlTreEveZYL2P4RJXK7h/pub?output=csv';
     // ==========================================
 
     let db = [];
     let currentRenderedData = [];
     let fuse;
 
-    // Obtener Fecha Formateada (dd-mm-yyyy)
     function getFormattedDate() {
         const today = new Date();
         const dd = String(today.getDate()).padStart(2, '0');
@@ -100,14 +182,13 @@
             const response = await fetch(DATA_URL);
             if (!response.ok) throw new Error("Error de red");
             const csvText = await response.text();
-            
+
             Papa.parse(csvText, {
                 header: true,
                 skipEmptyLines: true,
                 complete: (results) => {
                     db = results.data;
                     initSearchEngine();
-                    // Texto del pie de página actualizado
                     statusDiv.innerText = `Base de datos actualizada al ${getFormattedDate()} ©VMSiuP`;
                 }
             });
@@ -117,7 +198,11 @@
     }
 
     function initSearchEngine() {
-        const options = { includeScore: true, threshold: 0.3, keys: ['Empresa', 'RUC', 'Palabras Clave'] };
+        const options = {
+            includeScore: true,
+            threshold: 0.3,
+            keys: ['Empresa', 'RUC', 'Palabras Clave']
+        };
         fuse = new Fuse(db, options);
         renderResults(db);
     }
@@ -126,50 +211,45 @@
     const input = document.getElementById('searchInput');
 
     input.addEventListener('input', (e) => {
-        const term = e.target.value;
+        const term = e.target.value.trim();
         if (!term) { renderResults(db); return; }
         const results = fuse.search(term);
         renderResults(results.map(r => r.item));
     });
 
     function renderResults(data) {
-        currentRenderedData = data; // Guardamos la data actual para los botones
+        currentRenderedData = data;
         resultsDiv.innerHTML = '';
-        
+
         if (data.length === 0) {
             resultsDiv.innerHTML = '<div style="text-align:center; color:#64748b; margin-top:20px;">No se encontraron resultados.</div>';
             return;
         }
 
         data.forEach((item, index) => {
-            if(!item.Empresa) return; 
+            if (!item.Empresa) return;
 
-            // --- CORRECCIÓN: Asegurar que la URL empiece con http o https ---
             let webUrl = item.Web ? item.Web.trim() : '';
             if (webUrl && !webUrl.startsWith('http')) {
                 webUrl = 'https://' + webUrl;
             }
-            // ----------------------------------------------------------------
+
+            const tel = item.Teléfono ? item.Teléfono.trim() : '';
+            const email = item['Email Oficial'] ? item['Email Oficial'].trim() : '';
+            const contacto = item['Email Contacto'] ? item['Email Contacto'].trim() : '';
 
             const html = `
                 <div class="card">
                     <h2>${item.Empresa}</h2>
                     <div class="data-row"><span class="label">RUC:</span> <span class="value">${item.RUC || '-'}</span></div>
                     <div class="data-row"><span class="label">Dirección:</span> <span class="value">${item.Dirección || '-'}</span></div>
-                    <div class="data-row"><span class="label">Teléfono:</span> <span class="value"><a href="tel:${item.Teléfono}">${item.Teléfono || '-'}</a></span></div>
-                    
-                    <div class="data-row"><span class="label">Web:</span> <span class="value">${webUrl ? `<a href="${webUrl}" target="_blank">Visitar Sitio</a>` : '-'}</span></div>
-                    
-                    <div class="data-row"><span class="label">Email Oficial:</span> <span class="value"><a href="mailto:${item['Email Oficial']}">${item['Email Oficial'] || '-'}</a></span></div>
-                    <div class="data-row"><span class="label">Contacto:</span> <span class="value">${item['Email Contacto'] || '-'}</span></div>
-                    
+                    <div class="data-row"><span class="label">Teléfono:</span> <span class="value">${tel ? `<a href="tel:${tel}">${tel}</a>` : '-'}</span></div>
+                    <div class="data-row"><span class="label">Web:</span> <span class="value">${webUrl ? `<a href="${webUrl}" target="_blank" rel="noopener">Visitar sitio</a>` : '-'}</span></div>
+                    <div class="data-row"><span class="label">Email Oficial:</span> <span class="value">${email ? `<a href="mailto:${email}">${email}</a>` : '-'}</span></div>
+                    <div class="data-row"><span class="label">Contacto:</span> <span class="value">${contacto ? `<a href="mailto:${contacto}">${contacto}</a>` : '-'}</span></div>
                     <div class="action-buttons">
-                        <button class="btn btn-copy" onclick="copiarDatos(${index})">
-                            📄 Copiar Word
-                        </button>
-                        <button class="btn btn-wa" onclick="compartirWhatsApp(${index})">
-                            💬 Compartir
-                        </button>
+                        <button class="btn btn-copy" onclick="copiarDatos(${index})">📄 Copiar</button>
+                        <button class="btn btn-wa" onclick="compartirWhatsApp(${index})">💬 Compartir</button>
                     </div>
                 </div>
             `;
@@ -177,13 +257,10 @@
         });
     }
 
-    // --- FUNCIONES DE LOS BOTONES ---
-
     function copiarDatos(index) {
         const item = currentRenderedData[index];
-        // Formato de texto plano (ideal para Word)
         const texto = `EMPRESA: ${item.Empresa}\nRUC: ${item.RUC || '-'}\nDIRECCIÓN: ${item.Dirección || '-'}\nTELÉFONO: ${item.Teléfono || '-'}\nWEB: ${item.Web || '-'}\nEMAIL OFICIAL: ${item['Email Oficial'] || '-'}\nCONTACTO: ${item['Email Contacto'] || '-'}`;
-        
+
         navigator.clipboard.writeText(texto).then(() => {
             const toast = document.getElementById('toast');
             toast.style.opacity = '1';
@@ -193,11 +270,10 @@
 
     function compartirWhatsApp(index) {
         const item = currentRenderedData[index];
-        // Formato con viñetas para WhatsApp
         const texto = `*Datos Corporativos*\n☑ *Empresa:* ${item.Empresa}\n☑ *RUC:* ${item.RUC || '-'}\n☑ *Dirección:* ${item.Dirección || '-'}\n☑ *Teléfono:* ${item.Teléfono || '-'}\n☑ *Web:* ${item.Web || '-'}\n☑ *Email:* ${item['Email Oficial'] || '-'}\n☑ *Contacto:* ${item['Email Contacto'] || '-'}`;
-        
+
         const url = `https://wa.me/?text=${encodeURIComponent(texto)}`;
-        window.open(url, '_blank');
+        window.open(url, '_blank', 'noopener');
     }
 
     if ('serviceWorker' in navigator) {
