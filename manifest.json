@@ -1,5 +1,5 @@
 {
-  "name": "Directorio MP",
+  "name": "Directorio Corporativo",
   "short_name": "Directorio",
   "start_url": "./index.html",
   "display": "standalone",
@@ -7,9 +7,16 @@
   "theme_color": "#2563eb",
   "icons": [
     {
-      "src": "./logo-app.png", 
+      "src": "./logo-app_192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./logo-app_512.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     }
   ]
 }
